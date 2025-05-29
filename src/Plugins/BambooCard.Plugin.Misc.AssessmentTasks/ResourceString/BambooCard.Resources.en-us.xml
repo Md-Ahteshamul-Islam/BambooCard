@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Language Name="English" IsRightToLeft="false">
+    <!-- BambooCard Discount Settings -->
+
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BambooCardDiscountSettings.EnableCustomDiscount">
+        <Value>Enable Custom Discount</Value>
+    </LocaleResource>
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BambooCardDiscountSettings.EnableCustomDiscount.Hint">
+        <Value>Check to enable or disable the custom discount feature based on customer order history.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BambooCardDiscountSettings.MinimumOrderCount">
+        <Value>Minimum Order Count</Value>
+    </LocaleResource>
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BambooCardDiscountSettings.MinimumOrderCount.Hint">
+        <Value>Enter the minimum number of past orders required for the customer to qualify for the discount.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BambooCardDiscountSettings.DiscountPercentage">
+        <Value>Discount Percentage</Value>
+    </LocaleResource>
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BambooCardDiscountSettings.DiscountPercentage.Hint">
+        <Value>Specify the percentage discount to be applied when the criteria are met.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="BambooCard.Configuration">
+        <Value>BambooCard Configuration</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="BambooCard.Settings.DiscountSettings">
+        <Value>Discount Settings</Value>
+    </LocaleResource>
+    
+</Language>

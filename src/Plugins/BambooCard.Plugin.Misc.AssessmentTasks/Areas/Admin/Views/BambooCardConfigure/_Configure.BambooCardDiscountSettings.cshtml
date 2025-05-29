@@ -1,0 +1,34 @@
+﻿@model ConfigurationModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-override-store-checkbox asp-for="BambooCardDiscountSettings.EnableCustomDiscount_OverrideForStore" asp-input="BambooCardDiscountSettings.EnableCustomDiscount" asp-store-scope="@Model.BambooCardDiscountSettings.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="BambooCardDiscountSettings.EnableCustomDiscount" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="BambooCardDiscountSettings.EnableCustomDiscount" />
+            <span asp-validation-for="BambooCardDiscountSettings.EnableCustomDiscount"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-override-store-checkbox asp-for="BambooCardDiscountSettings.MinimumOrderCount_OverrideForStore" asp-input="BambooCardDiscountSettings.MinimumOrderCount" asp-store-scope="@Model.BambooCardDiscountSettings.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="BambooCardDiscountSettings.MinimumOrderCount" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="BambooCardDiscountSettings.MinimumOrderCount" />
+            <span asp-validation-for="BambooCardDiscountSettings.MinimumOrderCount"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-override-store-checkbox asp-for="BambooCardDiscountSettings.DiscountPercentage_OverrideForStore" asp-input="BambooCardDiscountSettings.DiscountPercentage" asp-store-scope="@Model.BambooCardDiscountSettings.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="BambooCardDiscountSettings.DiscountPercentage" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="BambooCardDiscountSettings.DiscountPercentage" />
+            <span asp-validation-for="BambooCardDiscountSettings.DiscountPercentage"></span>
+        </div>
+    </div>
+</div>

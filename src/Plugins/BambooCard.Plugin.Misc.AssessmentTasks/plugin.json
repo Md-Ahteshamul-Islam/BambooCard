@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Bamboo Card",
+  "FriendlyName": "Assessment Tasks (Custom Features)",
+  "SystemName": "Misc.AssessmentTasks",
+  "Version": "1.0.0",
+  "SupportedVersions": [ "4.80" ],
+  "Author": "Bamboo Card Engineering",
+  "DisplayOrder": 1,
+  "FileName": "BambooCard.Plugin.Misc.AssessmentTasks.dll",
+  "Description": "This plugin includes assessment features such as custom discounts, checkout enhancements, admin search extension, secure order retrieval API, and containerized deployment support."
+}

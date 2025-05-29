@@ -1,0 +1,45 @@
+@using BambooCard.Plugin.Misc.AssessmentTasks
+@using BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models
+
+@model ConfigurationModel
+
+@{
+    NopHtml.SetActiveMenuItemSystemName(AssessmentTasksDefaults.PluginMenuSystemName);
+    ViewBag.PageTitle = T("BambooCard.Configuration").Text;
+
+    var customer = await workContext.GetCurrentCustomerAsync();
+}
+@{
+    var showTour = ViewBag.ShowTour ?? false;
+
+    const string hideBambooCardDiscountSettingsBlockAttributeName = "BambooCardSettingsPage.HideBambooCardDiscountSettingsBlock";
+    var hideBambooCardDiscountSettingsBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideBambooCardDiscountSettingsBlockAttributeName);
+}
+
+<form asp-controller="BambooCardConfigure" asp-action="Configure" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("BambooCard.Settings.DiscountSettings")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-floppy-disk"></i>
+                @T("Admin.Common.Save")
+            </button>
+         </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                @await Component.InvokeAsync(typeof(StoreScopeConfigurationViewComponent))
+                @await Component.InvokeAsync(typeof(SettingModeViewComponent))
+                <div asp-validation-summary="All"></div>
+
+                <nop-cards id="generalcommon-cards">
+                    <nop-card asp-name="discount-settings" asp-icon="fas fa-turn-up" asp-title="@T("BambooCard.Settings.DiscountSettings")" asp-hide-block-attribute-name="@hideBambooCardDiscountSettingsBlockAttributeName" asp-hide="@hideBambooCardDiscountSettingsBlock" >@await Html.PartialAsync("_Configure.BambooCardDiscountSettings", Model)</nop-card>
+                 </nop-cards>
+            </div>
+        </div>
+    </section>
+</form>
