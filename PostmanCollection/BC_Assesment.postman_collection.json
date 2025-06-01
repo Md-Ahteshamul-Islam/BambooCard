@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "2b9ce2f8-c7e2-42a7-ab3b-8170d98fc065",
+		"name": "BC_Assesment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9121759"
+	},
+	"item": [
+		{
+			"name": "/api/customer/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"email\": \"admin@yourStore.com\",\n    \"password\": \"123456\"\n  }\n}",
+					"options": {
+						"raw": {
+							"headerFamily": "json",
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/customer/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"customer",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "DMS-DeviceId",
+								"value": ""
+							},
+							{
+								"key": "DMS-Token",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": {\n    \"customProperties\": {\n      \"dobe\": \"<string>\",\n      \"do_f4\": \"<string>\"\n    },\n    \"checkoutAsGuest\": \"<boolean>\",\n    \"email\": \"<email>\",\n    \"usernamesEnabled\": \"<boolean>\",\n    \"registrationType\": 2,\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"rememberMe\": \"<boolean>\",\n    \"displayCaptcha\": \"<boolean>\"\n  },\n  \"formValues\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"uploadPicture\": {\n    \"base64Image\": \"<string>\",\n    \"fileName\": \"<string>\",\n    \"contentType\": \"<string>\",\n    \"lengthInBytes\": \"<integer>\"\n  }\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/customer/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customer",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "api/order/details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "BC-Token",
+						"value": "{{BC-Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"admin@yourStore.com\"\n}",
+					"options": {
+						"raw": {
+							"headerFamily": "json",
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/order/details",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"order",
+						"details"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "DMS-DeviceId",
+								"value": ""
+							},
+							{
+								"key": "DMS-Token",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": {\n    \"customProperties\": {\n      \"dobe\": \"<string>\",\n      \"do_f4\": \"<string>\"\n    },\n    \"checkoutAsGuest\": \"<boolean>\",\n    \"email\": \"<email>\",\n    \"usernamesEnabled\": \"<boolean>\",\n    \"registrationType\": 2,\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"rememberMe\": \"<boolean>\",\n    \"displayCaptcha\": \"<boolean>\"\n  },\n  \"formValues\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"uploadPicture\": {\n    \"base64Image\": \"<string>\",\n    \"fileName\": \"<string>\",\n    \"contentType\": \"<string>\",\n    \"lengthInBytes\": \"<integer>\"\n  }\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/customer/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customer",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/api/customer/logout",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "DMS-DeviceId",
+						"value": "{{DMS-DeviceId}}",
+						"type": "text"
+					},
+					{
+						"key": "DMS-Token",
+						"value": "{{DMS-Token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/customer/logout",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"customer",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "DMS-DeviceId",
+								"value": ""
+							},
+							{
+								"key": "DMS-Token",
+								"value": ""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/customer/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customer",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:52930"
+		},
+		{
+			"key": "BC-Token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJCQy1DdXN0b21lcklkIjoxLCJleHAiOjE3NDg3OTE1NzMuMH0.QlldW-mqMV3uzjm5YaSD7NxnMiF3yfuumPJa5aIK8fc",
+			"type": "string"
+		}
+	]
+}

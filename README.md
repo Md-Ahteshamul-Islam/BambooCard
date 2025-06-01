@@ -53,11 +53,50 @@ These additions demonstrate practical plugin development, secure communication u
 - **Localization:** All display strings use `IStringLocalizer` with resource keys. XML export provided.
 - **Security:** Token-based authentication is implemented using `HS256` with configurable secret key.
 
+## 🗄️ Preloaded Database
+
+A `.bacpac` file is included in the `/Database` folder for quick database setup in SQL Server.
+
+### 🔹 File Path: /Database/BambooCardDB.bacpac
+
+### 🛠️ How to Use:
+- Use **SQL Server Management Studio (SSMS)** or **Azure Data Studio**.
+- Import the `.bacpac` as a new database (e.g., `nop480`).
+- Update your connection string in `appsettings.json` or Docker `environment` variables accordingly.
+
+### 🔐 Preloaded Admin Credentials:
+| Field | Value |
+|-------|-------|
+| **Email** | `admin@bamboocard.com` |
+| **Password** | `Bamboo@card19` |
+
+> ✅ These credentials allow immediate login to the nopCommerce admin area for testing and validation.
+
+
 ## 🧪 How to Verify
 
 1. Generate token via `/api/token`
 2. Make authenticated call to `/api/order/details` with the token in the request header.
 3. Add a product to the cart and proceed to checkout — ensure `GiftMessage` is a required field.
+
+## 📬 Postman Collection
+
+A Postman collection is provided to help test the custom API endpoints quickly and consistently.
+
+### 📁 File Location: /PostmanCollection/BC_Assesment.postman_collection.json
+
+### 📌 Contains Requests For:
+- 🔐 `POST /api/token` – Generate JWT token for a valid customer
+- 📦 `POST /api/order/details` – Lookup orders by email (requires JWT in `Authorization` header)
+
+### ✅ How to Use:
+1. Open Postman.
+2. Click **Import** → choose the `BC_Assesment.postman_collection.json` file.
+3. Set the base URL to match your local environment (e.g., `http://localhost:8080`).
+4. Run the requests in order.
+
+> Make sure to restore the `BambooCardDB.bacpac` to access test data with valid customer records.
+
 
 ## 📦 Docker
 
