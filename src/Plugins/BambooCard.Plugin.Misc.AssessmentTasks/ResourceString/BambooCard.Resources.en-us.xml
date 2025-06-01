@@ -23,6 +23,13 @@
         <Value>Specify the percentage discount to be applied when the criteria are met.</Value>
     </LocaleResource>
 
+    <LocaleResource Name="BambooCard.Admin.Models.ProductAttributes.List.SearchName">
+        <Value>Name</Value>
+    </LocaleResource>
+    <LocaleResource Name="BambooCard.Admin.Models.ProductAttributes.List.SearchName.Hint">
+        <Value>Search by attribute name.</Value>
+    </LocaleResource>
+
     <LocaleResource Name="BambooCard.Configuration">
         <Value>BambooCard Configuration</Value>
     </LocaleResource>
@@ -30,5 +37,34 @@
     <LocaleResource Name="BambooCard.Settings.DiscountSettings">
         <Value>Discount Settings</Value>
     </LocaleResource>
-    
+
+    <!-- === BCAPI Settings String Resources === -->
+
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BCAPISettings.SecretKey">
+        <Value>Secret Key</Value>
+    </LocaleResource>
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BCAPISettings.SecretKey.Hint">
+        <Value>The secret key used to sign JWT tokens. It should be a long, random, and secure string.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BCAPISettings.TokenValidityInMinute">
+        <Value>Token Validity (Minutes)</Value>
+    </LocaleResource>
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BCAPISettings.TokenValidityInMinute.Hint">
+        <Value>Specifies how long the JWT token remains valid in minutes after being issued.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BCAPISettings.JwtRefreshTokenLifetimeInHours">
+        <Value>Refresh Token Lifetime (Hours)</Value>
+    </LocaleResource>
+    <LocaleResource Name="BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BCAPISettings.JwtRefreshTokenLifetimeInHours.Hint">
+        <Value>The lifetime of a refresh token in hours. After this period, the refresh token will expire.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="BambooCard.Settings.BCAPISettings">
+        <Value>JWT / API Settings</Value>
+    </LocaleResource>
+    <LocaleResource Name="CheckoutAttribute.GiftMessage">
+        <Value>Gift Message</Value>
+    </LocaleResource>
 </Language>

@@ -2,7 +2,7 @@
   "Group": "Bamboo Card",
   "FriendlyName": "Assessment Tasks (Custom Features)",
   "SystemName": "Misc.AssessmentTasks",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "SupportedVersions": [ "4.80" ],
   "Author": "Bamboo Card Engineering",
   "DisplayOrder": 1,

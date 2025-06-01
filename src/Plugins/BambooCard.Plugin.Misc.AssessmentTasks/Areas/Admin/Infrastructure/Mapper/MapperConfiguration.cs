@@ -16,6 +16,8 @@ public class MapperConfiguration : Profile, IOrderedMapperProfile
     {
         CreateMap<BambooCardDiscountSettings, BambooCardDiscountSettingsModel>()
             .ReverseMap();
+        CreateMap<BCAPISettings, BCAPISettingsModel>()
+            .ReverseMap();
     }
 
     #endregion

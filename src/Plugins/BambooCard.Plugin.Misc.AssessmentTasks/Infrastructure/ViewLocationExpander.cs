@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Razor;
+﻿using BambooCard.Plugin.Misc.AssessmentTasks;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace BambooCard.Misc.AssessmentTasks.Infrastructure;
 public class ViewLocationExpander : IViewLocationExpander
@@ -11,6 +13,7 @@ public class ViewLocationExpander : IViewLocationExpander
 
     public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
     {
+
         if (context.AreaName == "Admin")
         {
             viewLocations = new string[]

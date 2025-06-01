@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Factories;
+using BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.ProductAttributes;
+using Microsoft.AspNetCore.Mvc;
 using Nop.Services.Catalog;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
@@ -12,6 +14,7 @@ using Nop.Web.Framework.Mvc.Filters;
 namespace BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Controllers;
 public class OverrideProductAttributeController : ProductAttributeController
 {
+    private readonly IProductAttributeCustomModelFactory _productAttributeCustomModelFactory;
 
     #region Ctor
 
@@ -21,7 +24,8 @@ public class OverrideProductAttributeController : ProductAttributeController
         INotificationService notificationService,
         IPermissionService permissionService,
         IProductAttributeModelFactory productAttributeModelFactory,
-        IProductAttributeService productAttributeService) : base(
+        IProductAttributeService productAttributeService,
+        IProductAttributeCustomModelFactory productAttributeCustomModelFactory) : base(
          customerActivityService,
          localizationService,
          localizedEntityService,
@@ -29,27 +33,29 @@ public class OverrideProductAttributeController : ProductAttributeController
          permissionService,
          productAttributeModelFactory,
          productAttributeService)
-    { }
+    {
+        _productAttributeCustomModelFactory = productAttributeCustomModelFactory;
+    }
 
     #endregion
 
     #region Attribute list / create / edit / delete
 
     [CheckPermission(StandardPermission.Catalog.PRODUCT_ATTRIBUTES_VIEW)]
-    public virtual async Task<IActionResult> List()
+    public override async Task<IActionResult> List()
     {
         //prepare model
-        var model = await _productAttributeModelFactory.PrepareProductAttributeSearchModelAsync(new ProductAttributeSearchModel());
+        var model = await _productAttributeCustomModelFactory.PrepareOverrideProductAttributeSearchModelAsync(new OverrideProductAttributeSearchModel());
 
         return View(model);
     }
 
     [HttpPost]
     [CheckPermission(StandardPermission.Catalog.PRODUCT_ATTRIBUTES_VIEW)]
-    public virtual async Task<IActionResult> List(ProductAttributeSearchModel searchModel)
+    public virtual async Task<IActionResult> SearchList(OverrideProductAttributeSearchModel searchModel)
     {
         //prepare model
-        var model = await _productAttributeModelFactory.PrepareProductAttributeListModelAsync(searchModel);
+        var model = await _productAttributeCustomModelFactory.PrepareProductAttributeListModelAsync(searchModel);
 
         return Json(model);
     }

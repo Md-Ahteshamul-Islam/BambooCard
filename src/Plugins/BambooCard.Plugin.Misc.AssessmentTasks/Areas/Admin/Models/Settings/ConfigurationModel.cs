@@ -9,12 +9,15 @@ public record ConfigurationModel : BaseNopModel, ISettingsModel
     public ConfigurationModel()
     {
         BambooCardDiscountSettings = new BambooCardDiscountSettingsModel();
+        BCAPISettings = new BCAPISettingsModel();
     }
 
     #endregion
     #region Properties
 
     public BambooCardDiscountSettingsModel BambooCardDiscountSettings { get; set; }
+    public BCAPISettingsModel BCAPISettings { get; set; }
+
 
     public int ActiveStoreScopeConfiguration { get; set; }
 

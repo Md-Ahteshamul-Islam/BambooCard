@@ -47,17 +47,31 @@ public class BambooCardConfigureController : BaseAdminController
     public async Task<IActionResult> Configure(ConfigurationModel model)
     {
         var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
+
+        // Save BambooCardDiscountSettings
         var bambooCardDiscountSettings = await _settingService.LoadSettingAsync<BambooCardDiscountSettings>(storeScope);
         bambooCardDiscountSettings = model.BambooCardDiscountSettings.ToSettings(bambooCardDiscountSettings);
+
         await _settingService.SaveSettingOverridablePerStoreAsync(bambooCardDiscountSettings, x => x.EnableCustomDiscount, model.BambooCardDiscountSettings.EnableCustomDiscount_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(bambooCardDiscountSettings, x => x.MinimumOrderCount, model.BambooCardDiscountSettings.MinimumOrderCount_OverrideForStore, storeScope, false);
         await _settingService.SaveSettingOverridablePerStoreAsync(bambooCardDiscountSettings, x => x.DiscountPercentage, model.BambooCardDiscountSettings.DiscountPercentage_OverrideForStore, storeScope, false);
 
-        //now clear settings cache
+        // Save BCAPISettings
+        var bcApiSettings = await _settingService.LoadSettingAsync<BCAPISettings>(storeScope);
+        bcApiSettings.SecretKey = model.BCAPISettings.SecretKey;
+        bcApiSettings.TokenValidityInMinute = model.BCAPISettings.TokenValidityInMinute;
+        bcApiSettings.JwtRefreshTokenLifetimeInHours = model.BCAPISettings.JwtRefreshTokenLifetimeInHours;
+
+        await _settingService.SaveSettingOverridablePerStoreAsync(bcApiSettings, x => x.SecretKey, model.BCAPISettings.SecretKey_OverrideForStore, storeScope, false);
+        await _settingService.SaveSettingOverridablePerStoreAsync(bcApiSettings, x => x.TokenValidityInMinute, model.BCAPISettings.TokenValidityInMinute_OverrideForStore, storeScope, false);
+        await _settingService.SaveSettingOverridablePerStoreAsync(bcApiSettings, x => x.JwtRefreshTokenLifetimeInHours, model.BCAPISettings.JwtRefreshTokenLifetimeInHours_OverrideForStore, storeScope, false);
+
+        // Clear settings cache
         await _settingService.ClearCacheAsync();
 
         return RedirectToAction("Configure");
     }
+
 
     #endregion
 }

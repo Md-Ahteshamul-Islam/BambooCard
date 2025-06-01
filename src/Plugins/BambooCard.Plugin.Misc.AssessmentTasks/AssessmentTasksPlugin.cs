@@ -5,12 +5,15 @@ using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Discounts;
 using Nop.Core.Domain.Localization;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Infrastructure;
+using Nop.Services.Attributes;
 using Nop.Services.Common;
 using Nop.Services.Configuration;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
+using Nop.Services.Orders;
 using Nop.Services.Plugins;
 using Nop.Services.Security;
 using Nop.Web.Framework.Menu;
@@ -25,7 +28,7 @@ namespace BambooCard.Plugin.Misc.AssessmentTasks;
 /// - Order retrieval API
 /// - Docker deployment
 /// </summary>
-public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
+public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin, IDiscountRequirementRule
 {
     #region Fields
 
@@ -37,6 +40,8 @@ public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
     private readonly IAdminMenu _adminMenu;
     private readonly ISettingService _settingService;
     private readonly IDiscountService _discountService;
+    private readonly IOrderService _orderService;
+    private readonly IAttributeService<CheckoutAttribute, CheckoutAttributeValue> _checkoutAttributeService;
 
     #endregion
 
@@ -50,7 +55,9 @@ public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
         ILocalizationService localizationService,
         IAdminMenu adminMenu,
         ISettingService settingService,
-        IDiscountService discountService)
+        IDiscountService discountService,
+    IOrderService orderService,
+        IAttributeService<CheckoutAttribute, CheckoutAttributeValue> checkoutAttributeService)
     {
         _permissionService = permissionService;
         _webHelper = webHelper;
@@ -60,6 +67,8 @@ public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
         _adminMenu = adminMenu;
         _settingService = settingService;
         _discountService = discountService;
+        _orderService = orderService;
+        _checkoutAttributeService = checkoutAttributeService;
     }
 
     #endregion
@@ -125,13 +134,35 @@ public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
         var discountRequirement = new DiscountRequirement
         {
             DiscountId = discount.Id,
-            DiscountRequirementRuleSystemName = typeof(DiscountRules.BambooCardDiscountRequirement).FullName
+            DiscountRequirementRuleSystemName = AssessmentTasksDefaults.SystemName
         };
 
         await _discountService.InsertDiscountRequirementAsync(discountRequirement);
 
         // Add a localization string for better UX
         await _localizationService.AddOrUpdateLocaleResourceAsync("DiscountRequirements.BambooCardDiscountRequirement", "Applies to loyal customers with minimum order history");
+    }
+    protected virtual async Task EnsureGiftMessageCheckoutAttributeExistsAsync()
+    {
+        var attributes = await _checkoutAttributeService.GetAllAttributesAsync();
+        var existing = attributes.FirstOrDefault(a =>
+            a.Name.Equals("GiftMessage", StringComparison.InvariantCultureIgnoreCase));
+
+        if (existing != null)
+            return;
+
+        var attribute = new CheckoutAttribute
+        {
+            Name = "GiftMessage",
+            TextPrompt = "Enter your gift message",
+            IsRequired = true,
+            AttributeControlType = AttributeControlType.MultilineTextbox,
+            DisplayOrder = 1
+        };
+
+        await _checkoutAttributeService.InsertAttributeAsync(attribute);
+
+        await _localizationService.AddOrUpdateLocaleResourceAsync("CheckoutAttribute.GiftMessage", "Gift Message");
     }
 
 
@@ -157,6 +188,12 @@ public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
 
         // Save the settings
         await _settingService.SaveSettingAsync(bambooCardDiscountSettings);
+        var bcAPISettings = await _settingService.LoadSettingAsync<BCAPISettings>();
+        bcAPISettings.TokenValidityInMinute = 60;
+        bcAPISettings.JwtRefreshTokenLifetimeInHours = 1;
+
+        // Save the settings
+        await _settingService.SaveSettingAsync(bambooCardDiscountSettings);
 
         // clear cache if needed
         await _settingService.ClearCacheAsync();
@@ -170,6 +207,7 @@ public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
         PreConfigureSettings();
         await CreateLoyalCustomerDiscountAsync();
         await InstalLocalResourseStringFromXmlFileAsync();
+        await EnsureGiftMessageCheckoutAttributeExistsAsync();
     }
 
     public override async Task UpdateAsync(string currentVersion, string targetVersion)
@@ -178,6 +216,7 @@ public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
         {
             await InstalLocalResourseStringFromXmlFileAsync();
             await CreateLoyalCustomerDiscountAsync();
+            await EnsureGiftMessageCheckoutAttributeExistsAsync();
         }
 
         await base.UpdateAsync(currentVersion, targetVersion);
@@ -207,6 +246,33 @@ public class AssessmentTasksPlugin : BasePlugin, IMiscPlugin, IAdminMenuPlugin
                 IconClass = "far fa-dot-circle"
             });
         }
+    }
+
+
+    public async Task<DiscountRequirementValidationResult> CheckRequirementAsync(DiscountRequirementValidationRequest request)
+    {
+        var result = new DiscountRequirementValidationResult();
+
+        if (request.Customer == null)
+            return result;
+
+        var settings = await _settingService.LoadSettingAsync<BambooCardDiscountSettings>();
+
+        if (!settings.EnableCustomDiscount)
+            return result;
+
+        var orders = await _orderService.SearchOrdersAsync(customerId: request.Customer.Id);
+
+        if (orders.TotalCount >= settings.MinimumOrderCount)
+            result.IsValid = true;
+
+        return result;
+    }
+
+    public string GetConfigurationUrl(int discountId, int? discountRequirementId)
+    {
+        return $"{_webHelper.GetStoreLocation()}Admin/AssessmentTasks/Configure";
+
     }
 
     #endregion
