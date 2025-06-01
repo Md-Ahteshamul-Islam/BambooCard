@@ -183,13 +183,8 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "DMS-DeviceId",
-						"value": "{{DMS-DeviceId}}",
-						"type": "text"
-					},
-					{
-						"key": "DMS-Token",
-						"value": "{{DMS-Token}}",
+						"key": "BC-Token",
+						"value": "{{BC-Token}}",
 						"type": "text"
 					}
 				],

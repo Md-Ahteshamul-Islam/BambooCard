@@ -53,6 +53,17 @@ These additions demonstrate practical plugin development, secure communication u
 - **Localization:** All display strings use `IStringLocalizer` with resource keys. XML export provided.
 - **Security:** Token-based authentication is implemented using `HS256` with configurable secret key.
 
+## 📂 Additional Documentation & Resources
+
+All supporting materials for the assessment are located in the `/Docs` directory of the repository:
+
+- [`Plugin Installation Guide.md`](Docs/Plugin%20Installation%20Guide.md): Step-by-step instructions for installing and configuring the plugin within a nopCommerce environment.
+- [`Postman API Testing Guide.md`](Docs/Postman%20API%20testing%20Guide.md): A guide on how to authenticate and test the API endpoints using Postman.
+- [`Container Deployment Guide.md`](Docs/Container%20Deployment%20Guide.md): Instructions for building and running the containerized application using Docker and Docker Compose.
+- [`BC_Assessment.postman_collection.json`](Docs/BC_Assessment.postman_collection.json): Postman collection for all API requests.
+- [`BambooCardDB.bacpac`](Docs/BambooCardDB.bacpac): Pre-configured database backup for running the application with test data.
+
+
 ## 🗄️ Preloaded Database
 
 A `.bacpac` file is included in the `/Database` folder for quick database setup in SQL Server.
