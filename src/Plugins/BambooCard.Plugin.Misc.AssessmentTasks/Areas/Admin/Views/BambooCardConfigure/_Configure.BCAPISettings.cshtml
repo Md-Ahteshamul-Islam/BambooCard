@@ -1,0 +1,36 @@
+﻿@model ConfigurationModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-override-store-checkbox asp-for="BCAPISettings.SecretKey_OverrideForStore" asp-input="BCAPISettings.SecretKey" asp-store-scope="@Model.BCAPISettings.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="BCAPISettings.SecretKey" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="BCAPISettings.SecretKey" />
+            <span asp-validation-for="BCAPISettings.SecretKey"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-override-store-checkbox asp-for="BCAPISettings.TokenValidityInMinute_OverrideForStore" asp-input="BCAPISettings.TokenValidityInMinute" asp-store-scope="@Model.BCAPISettings.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="BCAPISettings.TokenValidityInMinute" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="BCAPISettings.TokenValidityInMinute" />
+            <span asp-validation-for="BCAPISettings.TokenValidityInMinute"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-override-store-checkbox asp-for="BCAPISettings.JwtRefreshTokenLifetimeInHours_OverrideForStore" asp-input="BCAPISettings.JwtRefreshTokenLifetimeInHours" asp-store-scope="@Model.BCAPISettings.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="BCAPISettings.JwtRefreshTokenLifetimeInHours" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="BCAPISettings.JwtRefreshTokenLifetimeInHours" />
+            <span asp-validation-for="BCAPISettings.JwtRefreshTokenLifetimeInHours"></span>
+        </div>
+    </div>
+</div>

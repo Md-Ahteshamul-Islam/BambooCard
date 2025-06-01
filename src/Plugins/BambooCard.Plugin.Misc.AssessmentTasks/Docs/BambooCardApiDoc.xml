@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BambooCard.Plugin.Misc.AssessmentTasks</name>
+    </assembly>
+    <members>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Factories.ProductAttributeCustomModelFactory.PrepareOverrideProductAttributeSearchModelAsync(BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.ProductAttributes.OverrideProductAttributeSearchModel)">
+            <summary>
+            Prepare product attribute search model
+            </summary>
+            <param name="searchModel">Product attribute search model</param>
+            <returns>
+            A task that represents the asynchronous operation
+            The task result contains the product attribute search model
+            </returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Factories.ProductAttributeCustomModelFactory.PrepareProductAttributeListModelAsync(BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.ProductAttributes.OverrideProductAttributeSearchModel)">
+            <summary>
+            Prepare paged product attribute list model
+            </summary>
+            <param name="searchModel">Product attribute search model</param>
+            <returns>
+            A task that represents the asynchronous operation
+            The task result contains the product attribute list model
+            </returns>
+        </member>
+        <member name="T:BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Infrastructure.Mapper.MapperConfiguration">
+            <summary>
+            Represents AutoMapper configuration for plugin models
+            </summary>
+        </member>
+        <member name="P:BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Infrastructure.Mapper.MapperConfiguration.Order">
+            <summary>
+            Order of this mapper implementation
+            </summary>
+        </member>
+        <member name="T:BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.ProductAttributes.OverrideProductAttributeSearchModel">
+            <summary>
+            Extends a Product Attribute search model
+            </summary>
+        </member>
+        <member name="T:BambooCard.Plugin.Misc.AssessmentTasks.Areas.Admin.Models.Settings.BCAPISettingsModel">
+            <summary>
+            Represents the settings model for API-related JWT configuration
+            </summary>
+        </member>
+        <member name="T:BambooCard.Plugin.Misc.AssessmentTasks.AssessmentTasksDefaults">
+            <summary>
+            Represents plugin constants
+            </summary>
+        </member>
+        <member name="P:BambooCard.Plugin.Misc.AssessmentTasks.AssessmentTasksDefaults.SystemName">
+            <summary>
+            Gets a plugin system name
+            </summary>
+        </member>
+        <member name="P:BambooCard.Plugin.Misc.AssessmentTasks.AssessmentTasksDefaults.PluginMenuSystemName">
+            <summary>
+            Gets a plugin menu system name
+            </summary>
+        </member>
+        <member name="P:BambooCard.Plugin.Misc.AssessmentTasks.AssessmentTasksDefaults.XmlResourceStringFilePath">
+            <summary>
+            Gets a path to the file that contains Resource string xml File
+            </summary>
+        </member>
+        <member name="T:BambooCard.Plugin.Misc.AssessmentTasks.AssessmentTasksPlugin">
+            <summary>
+            Represents the BambooCard plugin containing custom assessment features:
+            - Custom discounts
+            - Checkout enhancements
+            - Admin product attribute search
+            - Order retrieval API
+            - Docker deployment
+            </summary>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.AssessmentTasksPlugin.GetConfigurationPageUrl">
+            <summary>
+            Gets the plugin's configuration page URL.
+            </summary>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.Ok(System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Returns Ok response (200 status code)
+            </summary>
+            <param name="message">The success message</param>
+            <param name="errors">The error list</param>
+            <param name="defaultMessage">'true' value indicates it will send a default success message with the response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.Created(System.Int32,System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Returns Created response (201 status code)
+            </summary>
+            <param name="id">The entity id</param>
+            <param name="message">The success message</param>
+            <param name="errors">The error list</param>
+            <param name="defaultMessage">'true' value indicates it will send a default success message with the response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.BadRequest(System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Returns BadRequest response (400 status code)
+            </summary>
+            <param name="error">Single error message</param>
+            <param name="errors">The error list</param>
+            <param name="defaultMessage">'true' value indicates it will send a default success message with the response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.UnauthorizedWrap``1(``0,System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Returns Unauthorized response (401 status code)
+            </summary>
+            <typeparam name="T">Type of 'BaseNopModel'</typeparam>
+            <param name="baseModel">The main model</param>
+            <param name="error">Single error message</param>
+            <param name="errors">The error list</param>
+            <param name="defaultMessage">'true' value indicates it will send a default success message with the response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.Unauthorized(System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Returns Unauthorized response (401 status code)
+            </summary>
+            <param name="error">Single error message</param>
+            <param name="errors">The error list</param>
+            <param name="defaultMessage">'true' value indicates it will send a default success message with the response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.NotFoundWrap``1(``0,System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Returns NotFound response (404 status code)
+            </summary>
+            <typeparam name="T">Type of 'BaseNopModel'</typeparam>
+            <param name="baseModel">The main model</param>
+            <param name="error">Single error message</param>
+            <param name="errors">The error list</param>
+            <param name="defaultMessage">'true' value indicates it will send a default success message with the response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.NotFound(System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Returns NotFound response (404 status code)
+            </summary>
+            <param name="error">Single error message</param>
+            <param name="errors">The error list</param>
+            <param name="defaultMessage">'true' value indicates it will send a default success message with the response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.InternalServerErrorWrap``1(``0,System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Returns InternalServerError response (500 status code)
+            </summary>
+            <typeparam name="T">Type of 'BaseNopModel'</typeparam>
+            <param name="baseModel">The main model</param>
+            <param name="error">Single error message</param>
+            <param name="errors">The error list</param>
+            <param name="defaultMessage">'true' value indicates it will send a default success message with the response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.InternalServerError(System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Returns InternalServerError response (500 status code)
+            </summary>
+            <param name="error">Single error message</param>
+            <param name="errors">The error list</param>
+            <param name="defaultMessage">'true' value indicates it will send a default success message with the response.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.MethodNotAllowed">
+            <summary>
+            Returns MethodNotAllowed response (405 status code)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Controllers.API.BaseApiController.LengthRequired">
+            <summary>
+            Returns LengthRequired response (411 status code)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BambooCard.Plugin.Misc.AssessmentTasks.Models.Common.BaseNopEntityApiModel">
+            <summary>
+            Represents base Crowley Web API entity model
+            </summary>
+        </member>
+        <member name="M:BambooCard.Plugin.Misc.AssessmentTasks.Services.ProductAttributeCustomService.GetAllProductAttributesAsync(System.String,System.Int32,System.Int32)">
+            <summary>
+            Gets all product attributes
+            </summary>
+            <param name="name">Name</param>
+            <param name="pageIndex">Page index</param>
+            <param name="pageSize">Page size</param>
+            <returns>
+            A task that represents the asynchronous operation
+            The task result contains the product attributes
+            </returns>
+        </member>
+        <member name="T:BambooCard.Plugin.Misc.AssessmentTasks.Settings.BambooCardDiscountSettings">
+            <summary>
+            Represents settings for the BambooCard custom discount feature
+            </summary>
+        </member>
+        <member name="P:BambooCard.Plugin.Misc.AssessmentTasks.Settings.BambooCardDiscountSettings.EnableCustomDiscount">
+            <summary>
+            Gets or sets a value indicating whether the discount is enabled
+            </summary>
+        </member>
+        <member name="P:BambooCard.Plugin.Misc.AssessmentTasks.Settings.BambooCardDiscountSettings.MinimumOrderCount">
+            <summary>
+            Gets or sets the minimum number of past orders required to qualify for the discount
+            </summary>
+        </member>
+        <member name="P:BambooCard.Plugin.Misc.AssessmentTasks.Settings.BambooCardDiscountSettings.DiscountPercentage">
+            <summary>
+            Gets or sets the discount percentage to be applied
+            </summary>
+        </member>
+    </members>
+</doc>
